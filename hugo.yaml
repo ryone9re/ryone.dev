@@ -1,0 +1,49 @@
+title: "ryone.dev"
+languageCode: "ja"
+theme: ["PaperMod"]
+
+pagination:
+  pagerSize: 5
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  title: "ryone.dev"
+  description: "ryone's blog"
+  keywords: ["Blog"]
+  author: "ryone"
+  defaultTheme: "auto"
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowPostNavLinks: true
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShareButtons: ["x", "facebook"]
+  ShowWordCount: true
+
+  assets:
+    favicon: "https://raw.githubusercontent.com/ryone9re/ryone.dev/refs/heads/main/static/icon.png"
+
+  homeInfoParams:
+    Title: "\U0001F436 Welcome \U0001F436"
+    Content: "Hi !! I'm ryone9re !!!"
+
+  socialIcons:
+    - name: x
+      url: "https://x.com/ryone9re"
+    - name: github
+      url: "https://github.com/ryone9re"
+
+menu:
+  main:
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 10
