@@ -1,0 +1,16 @@
+{
+	"name": "Ubuntu",
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts",
+			"pnpmVersion": "latest",
+			"nvmVersion": "latest"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": ["biomejs.biome", "astro-build.astro-vscode"]
+		}
+	}
+}

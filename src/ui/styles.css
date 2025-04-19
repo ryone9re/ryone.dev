@@ -1,0 +1,401 @@
+@import url("https://fonts.googleapis.com/css2?family=Neonderthaw&display=swap");
+
+/* ベーススタイル */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Courier New", monospace;
+}
+
+body {
+	background-color: #0a0a0a;
+	color: #f0f0f0;
+	overflow-x: hidden;
+}
+
+/* グリッチエフェクト */
+@keyframes glitch {
+	0% {
+		transform: translate(0);
+	}
+	20% {
+		transform: translate(-5px, 5px);
+	}
+	40% {
+		transform: translate(-5px, -5px);
+	}
+	60% {
+		transform: translate(5px, 5px);
+	}
+	80% {
+		transform: translate(5px, -5px);
+	}
+	100% {
+		transform: translate(0);
+	}
+}
+
+@keyframes scanline {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(100vh);
+	}
+}
+
+/* コンテナスタイル */
+.container {
+	width: 100%;
+	min-height: 100vh;
+	position: relative;
+	z-index: 1;
+}
+
+/* ヘッダースタイル */
+header {
+	padding: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+	background: rgba(10, 10, 10, 0.8);
+	backdrop-filter: blur(10px);
+}
+
+.logo {
+	font-size: 1.5rem;
+	font-weight: bold;
+	position: relative;
+}
+
+.logo::before {
+	content: "ryone";
+	position: absolute;
+	left: 0;
+	color: #0ff;
+	animation: glitch 1s infinite;
+	clip: rect(0, 100px, 20px, 0);
+}
+
+.logo::after {
+	content: "ryone";
+	position: absolute;
+	left: 0;
+	color: #f0f;
+	animation: glitch 1.5s infinite;
+	clip: rect(0, 100px, 10px, 0);
+	transform: translateX(-2px);
+}
+
+nav ul {
+	display: flex;
+	list-style: none;
+}
+
+nav ul li {
+	margin-left: 2rem;
+}
+
+nav ul li a {
+	color: #f0f0f0;
+	text-decoration: none;
+	padding: 0.5rem 1rem;
+	border: 1px solid transparent;
+	transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+	border-color: #0ff;
+	color: #0ff;
+	box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* メインコンテンツスタイル */
+.hero {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	position: relative;
+}
+
+.hero-text {
+	font-family: "Neonderthaw", cursive;
+	font-size: 8rem;
+	text-align: center;
+	margin-bottom: 1rem;
+	position: relative;
+	color: #fff;
+	text-shadow: 0 0 7px #0ff, 0 0 10px #0ff, 0 0 21px #0ff, 0 0 42px #0ff;
+	letter-spacing: 2px;
+}
+
+.hero-text span {
+	display: inline-block;
+	opacity: 0;
+	transform: translateY(20px);
+	animation: fadeInUp 0.8s forwards;
+	animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes fadeInUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes neonFlicker {
+	0%,
+	19%,
+	21%,
+	23%,
+	25%,
+	54%,
+	56%,
+	100% {
+		text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+	}
+	20%,
+	24%,
+	55% {
+		text-shadow: none;
+	}
+}
+
+.hero-subtext {
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
+	opacity: 0;
+	animation: fadeIn 1s forwards;
+	animation-delay: 1.5s;
+	color: #fff;
+	text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px #f0f;
+	letter-spacing: 1px;
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}
+@keyframes neonGlow {
+	0% {
+		opacity: 0.3;
+		text-shadow: none;
+	}
+	30% {
+		opacity: 0.5;
+		text-shadow: 0 0 5px #f0f;
+	}
+	60% {
+		opacity: 0.8;
+		text-shadow: 0 0 5px #f0f, 0 0 10px #f0f;
+	}
+	100% {
+		opacity: 1;
+		text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px #f0f;
+	}
+}
+
+.neon-flicker {
+	animation: neonFlicker 5s infinite alternate;
+}
+
+.neon-glow {
+	animation: neonGlow 2s ease-in-out forwards;
+}
+
+.cta-button {
+	padding: 0.8rem 2rem;
+	background: transparent;
+	border: 2px solid #0ff;
+	color: #0ff;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+	opacity: 0;
+	animation: fadeIn 1s forwards;
+	animation-delay: 2s;
+}
+
+.cta-button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 255, 255, 0.2);
+	transition: all 0.3s ease;
+}
+
+.cta-button:hover::before {
+	left: 0;
+}
+
+.cta-button:hover {
+	box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+/* 3Dキャンバス */
+#canvas-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+/* スキャンライン効果 */
+.scanline {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: rgba(0, 255, 255, 0.3);
+	z-index: 99;
+	animation: scanline 3s linear infinite;
+}
+
+/* グリッチノイズ */
+.noise {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xNkRpr/UAAAEQSURBVGhD7ZjBDYMwEARTQmrzKSM1pJRUkiJSQZpIOekgPaSJQ/m9LJ2JkIGVzv4ZaTR2nGOdc8t+HP3+2u5XsKv5XrG+9cnjGn6H/fJVj60+IUIMy+4I7QShOCAUB4TigFAcECIrKA4IxQEhsoLigFAcECIrKA4IxQEhsoLigFAcECIrKA4IkRUUB4TigBBZQXFAKA4IkRUUB4TigBBZQXFAKA4IkRUUB4TigBBZQXFAKA4IkRUUB4TigBBZQXFAiKygOCAUB4TICIoDQnFAiIygOCAUB4TICIoDQnFAiIygOCAUB4TICIoDQnFAiIygOCAUB4TICIoDQmQExQGhOCBERPhjnrvp3o+xW+9XWC+/D1wer31K/gGu20MoiOUNWwAAAABJRU5ErkJggg==");
+	opacity: 0.03;
+	z-index: 9;
+	pointer-events: none;
+}
+
+/* Aboutセクション */
+.about {
+	min-height: 100vh;
+	padding: 100px 2rem 2rem;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.section-title {
+	font-size: 2.5rem;
+	margin-bottom: 2rem;
+	position: relative;
+	display: inline-block;
+}
+
+.section-title::after {
+	content: "";
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100px;
+	height: 3px;
+	background: linear-gradient(90deg, #0ff, #f0f);
+}
+
+.about-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.about-text {
+	line-height: 1.6;
+}
+
+.skills {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 1rem;
+}
+
+.skill-tag {
+	background: rgba(0, 255, 255, 0.1);
+	border: 1px solid #0ff;
+	padding: 0.5rem 1rem;
+	margin: 0.5rem;
+	border-radius: 2px;
+	font-size: 0.9rem;
+}
+
+/* フッター */
+footer {
+	padding: 2rem;
+	text-align: center;
+	background: rgba(10, 10, 10, 0.9);
+	position: relative;
+}
+
+.social-links {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 1rem;
+}
+
+.social-link {
+	margin: 0 1rem;
+	color: #f0f0f0;
+	font-size: 1.5rem;
+	transition: all 0.3s ease;
+}
+
+.social-link:hover {
+	color: #f0f;
+	transform: translateY(-5px);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+	.hero-text {
+		font-size: 4rem;
+	}
+
+	.hero-subtext {
+		font-size: 1rem;
+	}
+
+	.about-content {
+		grid-template-columns: 1fr;
+	}
+
+	nav ul {
+		display: none;
+	}
+}
+
+/* 拍手エフェクト */
+.emoji-particle {
+	position: fixed;
+	pointer-events: none;
+	z-index: 9999;
+	font-size: 24px;
+	will-change: transform;
+	animation: float-and-fade 2s ease-out forwards;
+}
+
+@keyframes float-and-fade {
+	0% {
+		opacity: 1;
+		transform: translate(0, 0) rotate(0deg);
+	}
+	100% {
+		opacity: 0;
+		transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
+	}
+}
