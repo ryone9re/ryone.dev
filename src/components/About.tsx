@@ -22,7 +22,7 @@ export function About() {
 					<p style={{ marginTop: "1rem" }}>
 						Side gigs? I’m always game—*if* the pay’s on point. If I name a
 						number first I end up looking like the villain, so hit me with your
-						offer. I’m chill: buy me some legit <strong>yakiniku</strong>yakiniku and we’re square.
+						offer. I’m chill: buy me some legit <strong>yakiniku</strong> and we’re square.
 					</p>
 					<p style={{ marginTop: "1rem" }}>
 						(Geeks write their bios like this, right?)
