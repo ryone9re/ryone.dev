@@ -3,7 +3,9 @@ import { defineConfig } from "astro/config";
 
 import react from "@astrojs/react";
 
+import sitemap from "@astrojs/sitemap";
+
 export default defineConfig({
 	server: { host: "127.0.0.1" },
-	integrations: [react()],
+	integrations: [react(), sitemap()],
 });

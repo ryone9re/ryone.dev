@@ -1,6 +1,9 @@
 {
 	"name": "Ubuntu",
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"containerEnv": {
+		"SHELL": "/bin/bash"
+	},
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "lts",
@@ -8,9 +11,14 @@
 			"nvmVersion": "latest"
 		}
 	},
+	"mounts": [
+		"source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+		"source=${localWorkspaceFolderBasename}-pnpm-store,target=${containerWorkspaceFolder}/.pnpm-store,type=volume"
+	],
+	"onCreateCommand": "sudo chown vscode node_modules .pnpm-store && pnpm setup",
 	"customizations": {
 		"vscode": {
-			"extensions": ["biomejs.biome", "astro-build.astro-vscode"]
+			"extensions": ["astro-build.astro-vscode", "biomejs.biome"]
 		}
 	}
 }
